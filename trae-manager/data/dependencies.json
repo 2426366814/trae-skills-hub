@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "description": "Trae完整环境依赖配置",
+  "system_requirements": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "python": ">=3.9.0",
+    "git": ">=2.30.0"
+  },
+  "core_skills": {
+    "skill-seeker": {
+      "description": "技能搜索和比较工具",
+      "category": "management",
+      "source": "local",
+      "path": "skill-seeker",
+      "dependencies": {
+        "npm": ["openskills"]
+      },
+      "features": ["搜索本地技能", "搜索GitHub技能", "搜索Vercel Skills", "OpenSkills集成", "技能比较"],
+      "install_priority": 1
+    },
+    "mcp-seeker": {
+      "description": "MCP自动寻找和安装工具",
+      "category": "management",
+      "source": "local",
+      "path": "mcp-seeker",
+      "dependencies": {},
+      "features": ["自动分析需求", "智能搜索MCP", "MCP推荐", "一键安装MCP", "依赖管理"],
+      "install_priority": 1
+    },
+    "trae-manager": {
+      "description": "Trae统一管理和部署工具",
+      "category": "management",
+      "source": "local",
+      "path": "trae-manager",
+      "dependencies": {
+        "pip": ["pyyaml"]
+      },
+      "features": ["一键部署完整环境", "技能和MCP管理", "导出/导入配置", "跨机器部署"],
+      "install_priority": 0
+    }
+  },
+  "document_skills": {
+    "docx": {
+      "description": "Word文档处理",
+      "category": "document",
+      "source": "core",
+      "dependencies": {
+        "npm": ["docx"],
+        "pip": ["defusedxml"],
+        "apt": ["pandoc", "libreoffice", "poppler-utils"]
+      },
+      "features": ["创建文档", "编辑文档", "格式设置", "表格处理"]
+    },
+    "pdf": {
+      "description": "PDF文档处理",
+      "category": "document",
+      "source": "core",
+      "dependencies": {
+        "pip": ["pytesseract", "pdf2image"],
+        "apt": ["tesseract-ocr"]
+      },
+      "features": ["PDF读取", "PDF编辑", "PDF合并", "PDF转换"]
+    },
+    "xlsx": {
+      "description": "Excel表格处理",
+      "category": "document",
+      "source": "core",
+      "dependencies": {
+        "pip": ["openpyxl", "pandas"],
+        "apt": ["libreoffice"]
+      },
+      "features": ["数据处理", "公式计算", "图表生成", "数据透视"]
+    }
+  },
+  "mcp_servers": {
+    "postgres": {
+      "name": "PostgreSQL",
+      "package": "@anthropic-ai/mcp-server-postgres",
+      "source": "npm",
+      "description": "PostgreSQL数据库连接和查询",
+      "category": "database",
+      "downloads": 12500,
+      "rating": 4.8,
+      "features": ["连接池", "SQL查询", "事务管理", "数据迁移"],
+      "env_vars": ["DATABASE_URL"]
+    },
+    "filesystem": {
+      "name": "Filesystem",
+      "package": "@anthropic-ai/mcp-server-filesystem",
+      "source": "npm",
+      "description": "文件系统操作和访问",
+      "category": "filesystem",
+      "downloads": 25300,
+      "rating": 4.9,
+      "features": ["文件读写", "目录遍历", "权限管理", "文件搜索"]
+    },
+    "fetch": {
+      "name": "Fetch",
+      "package": "@anthropic-ai/mcp-server-fetch",
+      "source": "npm",
+      "description": "HTTP请求和API调用",
+      "category": "web",
+      "downloads": 22100,
+      "rating": 4.8,
+      "features": ["HTTP请求", "REST API", "JSON处理", "认证支持"]
+    }
+  }
+}

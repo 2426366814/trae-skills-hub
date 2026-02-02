@@ -1,0 +1,334 @@
+# Trae Manager 依赖清单
+# 包含今天创建的所有技能和MCP
+
+version: "1.0.0"
+description: "Trae完整环境依赖配置"
+
+# 系统要求
+system_requirements:
+  node: ">=18.0.0"
+  npm: ">=9.0.0"
+  python: ">=3.9.0"
+  git: ">=2.30.0"
+
+# 核心技能（今天创建的）
+core_skills:
+  skill-seeker:
+    description: "技能搜索和比较工具"
+    category: "management"
+    source: "local"
+    path: "skill-seeker"
+    dependencies:
+      npm:
+        - openskills
+    features:
+      - 搜索本地技能
+      - 搜索GitHub技能
+      - 搜索Vercel Skills
+      - OpenSkills集成
+      - 技能比较
+    install_priority: 1
+
+  mcp-seeker:
+    description: "MCP自动寻找和安装工具"
+    category: "management"
+    source: "local"
+    path: "mcp-seeker"
+    dependencies:
+      pip: []
+    features:
+      - 自动分析需求
+      - 智能搜索MCP
+      - MCP推荐
+      - 一键安装MCP
+      - 依赖管理
+    install_priority: 1
+
+  trae-manager:
+    description: "Trae统一管理和部署工具"
+    category: "management"
+    source: "local"
+    path: "trae-manager"
+    dependencies:
+      pip:
+        - pyyaml
+    features:
+      - 一键部署完整环境
+      - 技能和MCP管理
+      - 导出/导入配置
+      - 跨机器部署
+    install_priority: 0  # 最先安装
+
+# 文档处理技能
+document_skills:
+  docx:
+    description: "Word文档处理"
+    category: "document"
+    source: "core"
+    dependencies:
+      npm:
+        - docx
+      pip:
+        - defusedxml
+      apt:
+        - pandoc
+        - libreoffice
+        - poppler-utils
+    features:
+      - 创建文档
+      - 编辑文档
+      - 格式设置
+      - 表格处理
+
+  pdf:
+    description: "PDF文档处理"
+    category: "document"
+    source: "core"
+    dependencies:
+      pip:
+        - pytesseract
+        - pdf2image
+      apt:
+        - tesseract-ocr
+    features:
+      - PDF读取
+      - PDF编辑
+      - PDF合并
+      - PDF转换
+
+  pptx:
+    description: "PowerPoint处理"
+    category: "document"
+    source: "core"
+    dependencies:
+      npm:
+        - pptxgenjs
+        - playwright
+        - react-icons
+        - react
+        - react-dom
+        - sharp
+      pip:
+        - python-pptx
+        - markitdown
+        - defusedxml
+      apt:
+        - libreoffice
+        - poppler-utils
+    features:
+      - 创建幻灯片
+      - 编辑演示文稿
+      - 图表生成
+      - 模板应用
+
+  xlsx:
+    description: "Excel表格处理"
+    category: "document"
+    source: "core"
+    dependencies:
+      pip:
+        - openpyxl
+        - pandas
+      apt:
+        - libreoffice
+    features:
+      - 数据处理
+      - 公式计算
+      - 图表生成
+      - 数据透视
+
+# 开发技能
+development_skills:
+  mcp-builder:
+    description: "创建MCP服务器"
+    category: "development"
+    source: "core"
+    dependencies:
+      npm:
+        - "@modelcontextprotocol/sdk"
+    features:
+      - MCP服务器生成
+      - API集成
+      - 协议实现
+
+  skill-creator:
+    description: "创建自定义技能"
+    category: "development"
+    source: "core"
+    dependencies:
+      pip: []
+    features:
+      - 技能模板
+      - 代码生成
+      - 文档创建
+
+  frontend-design:
+    description: "前端设计"
+    category: "development"
+    source: "core"
+    dependencies:
+      npm: []
+    features:
+      - UI设计
+      - 响应式布局
+      - 组件设计
+
+  backend-dev-guidelines:
+    description: "后端开发指南"
+    category: "development"
+    source: "core"
+    dependencies:
+      npm:
+        - express
+      pip:
+        - flask
+        - django
+    features:
+      - API设计
+      - 数据库操作
+      - 安全最佳实践
+
+  frontend-dev-guidelines:
+    description: "前端开发指南"
+    category: "development"
+    source: "core"
+    dependencies:
+      npm:
+        - react
+        - typescript
+        - "@mui/material"
+    features:
+      - React模式
+      - TypeScript规范
+      - MUI组件
+
+# 工具技能
+tool_skills:
+  connect-apps:
+    description: "连接应用程序"
+    category: "tools"
+    source: "core"
+    dependencies:
+      pip:
+        - composio
+      npm:
+        - "@composio/core"
+    features:
+      - 应用集成
+      - API连接
+      - 数据同步
+
+  file-organizer:
+    description: "文件整理"
+    category: "tools"
+    source: "core"
+    dependencies:
+      pip: []
+    features:
+      - 文件分类
+      - 重复检测
+      - 自动整理
+
+  webapp-testing:
+    description: "Web应用测试"
+    category: "tools"
+    source: "core"
+    dependencies:
+      npm:
+        - playwright
+    features:
+      - 自动化测试
+      - 性能测试
+      - UI测试
+
+# MCP服务（今天创建的mcp-seeker中的）
+mcp_servers:
+  postgres:
+    name: "PostgreSQL"
+    package: "@anthropic-ai/mcp-server-postgres"
+    source: "npm"
+    description: "PostgreSQL数据库连接和查询"
+    category: "database"
+    downloads: 12500
+    rating: 4.8
+    features:
+      - 连接池
+      - SQL查询
+      - 事务管理
+      - 数据迁移
+    env_vars:
+      - DATABASE_URL
+
+  mysql:
+    name: "MySQL"
+    package: "mysql-mcp-server"
+    source: "npm"
+    description: "MySQL数据库连接和操作"
+    category: "database"
+    downloads: 8300
+    rating: 4.6
+    features:
+      - 连接管理
+      - 查询执行
+      - 存储过程
+      - 备份恢复
+
+  mongodb:
+    name: "MongoDB"
+    package: "mongodb-mcp-server"
+    source: "npm"
+    description: "MongoDB NoSQL数据库操作"
+    category: "database"
+    downloads: 6700
+    rating: 4.5
+    features:
+      - 文档操作
+      - 聚合查询
+      - 索引管理
+      - NoSQL
+
+  sqlite:
+    name: "SQLite"
+    package: "@anthropic-ai/mcp-server-sqlite"
+    source: "npm"
+    description: "SQLite轻量级数据库"
+    category: "database"
+    downloads: 9200
+    rating: 4.7
+    features:
+      - 本地数据库
+      - 零配置
+      - SQL支持
+      - 嵌入式
+
+  filesystem:
+    name: "Filesystem"
+    package: "@anthropic-ai/mcp-server-filesystem"
+    source: "npm"
+    description: "文件系统操作和访问"
+    category: "filesystem"
+    downloads: 25300
+    rating: 4.9
+    features:
+      - 文件读写
+      - 目录遍历
+      - 权限管理
+      - 文件搜索
+
+  pdf:
+    name: "PDF"
+    package: "@anthropic-ai/mcp-pdf"
+    source: "npm"
+    description: "PDF文件读取和处理"
+    category: "document"
+    downloads: 18700
+    rating: 4.8
+    features:
+      - PDF读取
+      - 文本提取
+      - 元数据
+      - 多页处理
+
+  git:
+    name: "Git"
+    package: "

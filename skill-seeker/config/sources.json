@@ -1,0 +1,113 @@
+{
+  "version": "1.0",
+  "description": "Skill Seeker 数据源配置",
+  "sources": {
+    "local": {
+      "enabled": true,
+      "path": "~/.trae-cn/skills",
+      "description": "本地已安装的技能"
+    },
+    "github": {
+      "enabled": true,
+      "api_url": "https://api.github.com",
+      "description": "GitHub技能仓库",
+      "repositories": [
+        {
+          "name": "awesome-claude-skills",
+          "owner": "ComposioHQ",
+          "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+          "priority": "high"
+        },
+        {
+          "name": "claude-code-infrastructure-showcase",
+          "owner": "diet103",
+          "url": "https://github.com/diet103/claude-code-infrastructure-showcase",
+          "priority": "high"
+        },
+        {
+          "name": "superpowers",
+          "owner": "obra",
+          "url": "https://github.com/obra/superpowers",
+          "priority": "high"
+        },
+        {
+          "name": "Skill_Seekers",
+          "owner": "yusufkaraaslan",
+          "url": "https://github.com/yusufkaraaslan/Skill_Seekers",
+          "priority": "medium"
+        }
+      ]
+    },
+    "vercel": {
+      "enabled": true,
+      "api_url": "https://skills.sh/api",
+      "description": "Vercel Skills商店",
+      "top_skills": [
+        "vercel-react-best-practices",
+        "web-design-guidelines",
+        "remotion-best-practices",
+        "frontend-design",
+        "skill-creator",
+        "agent-browser",
+        "building-native-ui",
+        "seo-audit",
+        "better-auth-best-practices",
+        "audit-website"
+      ]
+    },
+    "openskills": {
+      "enabled": true,
+      "command": "npx openskills",
+      "description": "OpenSkills - AI的npm包管理器",
+      "features": [
+        "list - 列出已安装技能",
+        "install - 从GitHub安装技能",
+        "read - 读取技能内容",
+        "update - 更新技能",
+        "sync - 同步AGENTS.md",
+        "manage - 管理技能"
+      ],
+      "official_skills": [
+        "anthropics/skills",
+        "anthropics/webdev-skills"
+      ],
+      "advantages": [
+        "标准化技能包管理",
+        "渐进式披露节省Token",
+        "支持私有Git仓库",
+        "CI/CD非交互模式",
+        "与MCP互补"
+      ]
+    },
+    "web_search": {
+      "enabled": true,
+      "description": "网络搜索发现新技能",
+      "search_engines": ["google", "github"]
+    }
+  },
+  "search": {
+    "default_limit": 10,
+    "cache_duration": 3600,
+    "min_score": 0.3,
+    "max_results": 50
+  },
+  "comparison": {
+    "default_criteria": ["downloads", "features", "ratings"],
+    "weights": {
+      "downloads": 0.3,
+      "features": 0.3,
+      "ratings": 0.25,
+      "popularity": 0.15
+    }
+  },
+  "recommendation": {
+    "min_confidence": 0.6,
+    "max_recommendations": 5,
+    "consider_installed": true
+  },
+  "discovery": {
+    "check_interval": 86400,
+    "auto_install": false,
+    "notify_new": true
+  }
+}
