@@ -139,6 +139,81 @@ python trae_manager.py install-skills pdf,docx,xlsx
 python trae_manager.py install-mcp filesystem,fetch
 ```
 
+### 场景4：智能体对话自动安装
+
+通过自然语言与 AI 智能体对话，自动安装所有需要的 skills 和 MCP：
+
+```bash
+# 在 Trae IDE 中，直接与 AI 对话安装
+# 示例对话命令：
+
+"帮我安装文档处理相关的技能"
+"安装 pdf、docx、xlsx、pptx 技能"
+"安装 MCP 服务：filesystem、fetch、sqlite"
+"安装所有开发工具技能"
+"安装 AI Agent 相关的 skills"
+
+# AI 智能体将自动执行：
+# 1. 搜索并识别所需技能/MCP
+# 2. 自动安装依赖
+# 3. 配置环境变量
+# 4. 验证安装结果
+```
+
+**支持的智能体对话命令：**
+
+| 对话指令 | 自动安装内容 |
+|---------|-------------|
+| "安装文档处理技能" | pdf, docx, xlsx, pptx |
+| "安装开发工具" | skill-creator, mcp-builder, frontend-design, backend-dev-guidelines |
+| "安装 AI Agent 技能" | building-agents, building-agents-using-langchain, building-agents-using-crewai |
+| "安装 MCP 服务" | filesystem, fetch, sqlite, postgresql |
+| "安装所有基础技能" | 核心文档处理 + 开发工具 + 常用 MCP |
+| "安装 [技能名]" | 单个指定技能 |
+| **"安装全部 skills 和 MCP"** | **一键安装所有可用技能和 MCP 服务** |
+
+**一键安装全部（完整环境）：**
+
+```bash
+# 对话命令：
+"安装全部 skills 和 MCP"
+"一键安装所有技能和 MCP 服务"
+"完整安装所有可用组件"
+
+# AI 自动执行以下安装：
+
+# 1. 安装所有核心 Skills
+python trae_manager.py install-skills docx,pdf,pptx,xlsx,skill-creator,mcp-builder,frontend-design,backend-dev-guidelines,frontend-dev-guidelines,canvas-design,theme-factory,artifacts-builder,web-artifacts-builder,brainstorming,systematic-debugging,writing-plans,executing-plans,using-superpowers,using-git-worktrees,content-research-writer,doc-coauthoring,skill-share,requesting-code-review,finishing-a-development-branch,subagent-driven-development,test-driven-development
+
+# 2. 安装所有 MCP 服务
+python trae_manager.py install-mcp filesystem,fetch,sqlite,postgresql,git,pdf,playwright-mcp-dev,webapp-testing
+
+# 3. 安装 AI Agent 相关 Skills
+python trae_manager.py install-skills building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,building-agents-using-vercel,test-sdk-in-realworld
+
+# 4. 安装实用工具 Skills
+python trae_manager.py install-skills connect-apps,connect,langsmith-fetch,developer-growth-analysis,meeting-insights-analyzer,lead-research-assistant,tailored-resume-generator,twitter-algorithm-optimizer,competitive-ads-extractor,domain-name-brainstormer,file-organizer,invoice-organizer,internal-comms
+
+# 5. 安装自动化测试相关
+python trae_manager.py install-skills route-tester,skill-developer,error-tracking,playwright-cli,playwright-mcp-dev
+```
+
+**安装示例：**
+
+```bash
+# 用户输入（在 AI 对话框中）：
+"我需要处理 PDF 文档和 Excel 表格，帮我安装相关技能"
+
+# AI 自动执行：
+python trae_manager.py install-skills pdf,xlsx
+
+# 并提示用户：
+# ✅ 已安装 pdf 技能 - PDF文档处理
+# ✅ 已安装 xlsx 技能 - Excel表格处理
+# 📋 依赖检查：pytesseract, pdf2image, openpyxl, pandas
+# 🔧 环境配置：已自动配置
+```
+
 ## 🛠️ 项目结构
 
 ```
