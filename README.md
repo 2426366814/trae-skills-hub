@@ -1,11 +1,26 @@
 # Trae Skills Hub 🚀
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/trae-skills-hub?style=social)](https://github.com/yourusername/trae-skills-hub)
+[![GitHub stars](https://img.shields.io/github/stars/2426366814/trae-skills-hub?style=social)](https://github.com/2426366814/trae-skills-hub)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
 [![Node.js](https://img.shields.io/badge/node.js-18+-green.svg)](https://nodejs.org)
 
 > 一站式Trae技能管理平台 - 搜索、安装、管理、部署，一键搞定！
+
+---
+
+## 📑 目录
+
+- [核心功能](#-核心功能)
+- [快速开始](#-快速开始)
+- [使用指南](#-使用指南)
+- [使用场景](#-使用场景)
+- [项目结构](#-项目结构)
+- [系统要求](#-系统要求)
+- [更新日志](#-更新日志)
+- [贡献指南](#-贡献指南)
+
+---
 
 ## ✨ 核心功能
 
@@ -24,9 +39,12 @@
 - **导入部署** - 新机器一键导入安装
 - **团队协作** - 共享配置，统一环境
 
+---
+
 ## 📦 包含内容
 
 ### 核心管理工具
+
 | 工具 | 功能 | 状态 |
 |------|------|------|
 | **trae-manager** | 统一管理和部署 | ✅ |
@@ -34,6 +52,7 @@
 | **mcp-seeker** | MCP搜索和安装 | ✅ |
 
 ### 文档处理技能
+
 | 技能 | 功能 | 依赖 |
 |------|------|------|
 | **docx** | Word文档处理 | docx, defusedxml |
@@ -42,6 +61,7 @@
 | **xlsx** | Excel表格处理 | openpyxl, pandas |
 
 ### 开发技能
+
 | 技能 | 功能 | 依赖 |
 |------|------|------|
 | **mcp-builder** | 创建MCP服务器 | @modelcontextprotocol/sdk |
@@ -51,6 +71,7 @@
 | **frontend-dev-guidelines** | 前端开发指南 | react, typescript |
 
 ### MCP服务
+
 | MCP | 功能 | 下载量 | 评分 |
 |-----|------|--------|------|
 | **Filesystem** | 文件系统访问 | 25.3K | ⭐4.9 |
@@ -59,6 +80,8 @@
 | **SQLite** | 轻量级数据库 | 9.2K | ⭐4.7 |
 | **Git** | 版本控制 | 15.6K | ⭐4.7 |
 | **PDF** | PDF处理 | 18.7K | ⭐4.8 |
+
+---
 
 ## 🚀 快速开始
 
@@ -72,7 +95,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/trae-skills-hub.git
+git clone https://github.com/2426366814/trae-skills-hub.git
 
 # 进入目录
 cd trae-skills-hub
@@ -84,13 +107,26 @@ cd trae-skills-hub
 python trae-manager/tools/trae_manager.py setup --full --auto-install
 ```
 
-### 使用
+### 一键安装所有推荐技能
 
 ```bash
-# 从本仓库一键安装所有推荐技能
-python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/2426366814/trae-skills-hub/master/install_all_skills.py').read())"
+# 方式1：使用 curl 一键安装
+curl -fsSL https://raw.githubusercontent.com/2426366814/trae-skills-hub/master/install.sh | bash
 
-# 或手动安装
+# 方式2：使用 PowerShell 一键安装 (Windows)
+iwr -useb https://raw.githubusercontent.com/2426366814/trae-skills-hub/master/install.ps1 | iex
+
+# 方式3：在 Trae IDE 中与 AI 对话
+"从 https://github.com/2426366814/trae-skills-hub 安装所有推荐技能"
+```
+
+---
+
+## 📖 使用指南
+
+### 基础命令
+
+```bash
 # 搜索技能
 python trae-manager/tools/skill_search.py --search "文档处理"
 
@@ -104,15 +140,24 @@ python trae-manager/tools/trae_manager.py export --full > my-config.json
 python trae-manager/tools/trae_manager.py import my-config.json --auto-install
 ```
 
-## 📚 文档
+### 智能体对话命令
 
-- [部署指南](DEPLOY.md) - 详细部署说明
-- [安装指南](trae-manager/INSTALL.md) - 新机器安装指南
-- [使用说明](trae-manager/SKILL.md) - 完整使用文档
+在 Trae IDE 中与 AI 智能体对话，自动安装和管理 skills：
+
+| 操作类型 | 对话命令示例 | 功能说明 |
+|---------|-------------|---------|
+| **一键安装全部** | `"从 https://github.com/2426366814/trae-skills-hub 安装所有推荐技能"` | 安装本仓库所有推荐的 skills 和 MCP |
+| **按项目类型** | `"我开发了 React 项目，安装相关技能"` | 根据项目类型智能安装 |
+| **按 GitHub 仓库** | `"我克隆了 https://github.com/xxx/yyy，安装相关技能"` | 分析仓库技术栈后安装 |
+| **清理重复** | `"清理重复技能"` | 删除重复安装的技能 |
+| **优化组合** | `"优化我的技能组合"` | 分析使用频率，清理冗余 |
+
+---
 
 ## 🎯 使用场景
 
 ### 场景1：新机器快速部署
+
 ```bash
 # 源机器导出配置
 python trae_manager.py export --full > my-trae-setup.json
@@ -122,6 +167,7 @@ python trae_manager.py import my-trae-setup.json --auto-install
 ```
 
 ### 场景2：团队协作
+
 ```bash
 # 导出团队配置
 python trae_manager.py export --full > team-config.json
@@ -132,6 +178,7 @@ python trae_manager.py import team-config.json --auto-install
 ```
 
 ### 场景3：技能搜索和安装
+
 ```bash
 # 搜索技能
 python skill_search.py --search "pdf"
@@ -145,8 +192,6 @@ python trae_manager.py install-mcp filesystem,fetch
 
 ### 场景4：智能体对话自动安装
 
-在 Trae IDE 中与 AI 智能体对话，自动安装 skills 和 MCP：
-
 #### 方式1：从本仓库一键安装全部推荐技能
 
 ```bash
@@ -157,40 +202,25 @@ python trae_manager.py install-mcp filesystem,fetch
 
 # AI 智能体将自动：
 # 1. 访问 https://github.com/2426366814/trae-skills-hub
-# 2. 读取推荐的技能清单（文档处理、开发工具、MCP服务等）
+# 2. 读取推荐的技能清单
 # 3. 自动安装所有推荐的 skills 和 MCP
 # 4. 配置环境变量和依赖
 ```
 
 #### 方式2：根据项目类型智能安装
 
-```bash
-# 告诉 AI 你的项目类型：
-
-"我克隆了一个 React 前端项目，帮我安装相关技能"
-"这是一个 Python 数据分析项目，需要哪些技能？"
-"我在开发一个 AI Agent 应用，安装相关工具"
-"这是一个文档处理工具项目"
-
-# AI 智能体将自动：
-# 1. 分析项目类型（package.json、requirements.txt、代码结构等）
-# 2. 识别项目所需的技术栈
-# 3. 自动安装匹配的 skills 和 MCP
-# 4. 配置环境变量和依赖
-```
-
 **按项目类型智能安装：**
 
 | 项目类型 | 对话命令 | 自动安装内容 |
 |---------|---------|-------------|
-| **React/前端项目** | "我开发了 React 项目" | frontend-design, frontend-dev-guidelines, artifacts-builder, webapp-testing |
-| **Node.js/后端项目** | "这是 Node.js 后端项目" | backend-dev-guidelines, error-tracking, systematic-debugging, route-tester |
-| **Python/数据分析** | "Python 数据分析项目" | xlsx, pdf, docx, canvas-design, theme-factory |
-| **AI Agent 应用** | "开发 AI Agent 应用" | building-agents, building-agents-using-langchain, mcp-builder, langsmith-fetch |
-| **文档处理工具** | "文档处理工具项目" | docx, pdf, xlsx, pptx, file-organizer, invoice-organizer |
-| **自动化测试** | "需要自动化测试" | playwright-cli, webapp-testing, route-tester, test-driven-development |
-| **MCP 服务开发** | "开发 MCP 服务" | mcp-builder, mcp_with_server, skill-creator |
-| **全栈项目** | "全栈 Web 应用" | frontend-dev-guidelines, backend-dev-guidelines, connect-apps, error-tracking |
+| **React/前端项目** | `"我开发了 React 项目"` | frontend-design, frontend-dev-guidelines, artifacts-builder, webapp-testing |
+| **Node.js/后端项目** | `"这是 Node.js 后端项目"` | backend-dev-guidelines, error-tracking, systematic-debugging, route-tester |
+| **Python/数据分析** | `"Python 数据分析项目"` | xlsx, pdf, docx, canvas-design, theme-factory |
+| **AI Agent 应用** | `"开发 AI Agent 应用"` | building-agents, building-agents-using-langchain, mcp-builder, langsmith-fetch |
+| **文档处理工具** | `"文档处理工具项目"` | docx, pdf, xlsx, pptx, file-organizer, invoice-organizer |
+| **自动化测试** | `"需要自动化测试"` | playwright-cli, webapp-testing, route-tester, test-driven-development |
+| **MCP 服务开发** | `"开发 MCP 服务"` | mcp-builder, mcp_with_server, skill-creator |
+| **全栈项目** | `"全栈 Web 应用"` | frontend-dev-guidelines, backend-dev-guidelines, connect-apps, error-tracking |
 
 **基于 GitHub 仓库智能安装：**
 
@@ -202,162 +232,43 @@ python trae_manager.py install-mcp filesystem,fetch
 # 1. 读取 package.json / requirements.txt / Cargo.toml 等
 # 2. 分析项目依赖和技术栈
 # 3. 匹配并安装对应的 skills 和 MCP
-
-# 示例：
-# 检测到 React + TypeScript -> 安装 frontend-dev-guidelines, frontend-design
-# 检测到 Python + FastAPI -> 安装 backend-dev-guidelines, error-tracking
-# 检测到 Playwright 测试 -> 安装 webapp-testing, playwright-cli
 ```
 
-**一键安装项目所需全部环境：**
-
-```bash
-# 完整项目环境安装命令：
-
-# 前端项目环境
-"为我的前端项目安装全部所需技能"
-python trae_manager.py install-skills frontend-design,frontend-dev-guidelines,artifacts-builder,web-artifacts-builder,canvas-design,theme-factory,webapp-testing,skill-creator
-
-# 后端项目环境  
-"为我的后端项目安装全部所需技能"
-python trae_manager.py install-skills backend-dev-guidelines,error-tracking,systematic-debugging,route-tester,requesting-code-review,finishing-a-development-branch,writing-plans,executing-plans
-
-# AI 项目环境
-"为我的 AI 项目安装全部所需技能"
-python trae_manager.py install-skills building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,mcp-builder,langsmith-fetch,content-research-writer,brainstorming
-
-# 数据/文档处理环境
-"为我的数据处理项目安装全部所需技能"
-python trae_manager.py install-skills docx,pdf,xlsx,pptx,file-organizer,invoice-organizer,canvas-design,theme-factory
-
-# 完整开发环境（全部安装）
-"安装全部 skills 和 MCP"
-python trae_manager.py install-skills docx,pdf,pptx,xlsx,skill-creator,mcp-builder,frontend-design,backend-dev-guidelines,frontend-dev-guidelines,canvas-design,theme-factory,artifacts-builder,web-artifacts-builder,brainstorming,systematic-debugging,writing-plans,executing-plans,using-superpowers,using-git-worktrees,content-research-writer,doc-coauthoring,skill-share,requesting-code-review,finishing-a-development-branch,subagent-driven-development,test-driven-development,building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,building-agents-using-vercel,connect-apps,connect,langsmith-fetch,developer-growth-analysis,meeting-insights-analyzer,lead-research-assistant,tailored-resume-generator,twitter-algorithm-optimizer,competitive-ads-extractor,domain-name-brainstormer,file-organizer,invoice-organizer,internal-comms,route-tester,skill-developer,error-tracking,playwright-cli,playwright-mcp-dev,webapp-testing
-python trae_manager.py install-mcp filesystem,fetch,sqlite,postgresql,git,pdf
-```
-
-**实际使用示例：**
-
-```bash
-# 场景1：刚克隆了一个项目
-用户："我刚克隆了 https://github.com/vercel/next.js，需要安装什么技能？"
-
-AI 分析：
-- 检测到 Next.js 框架
-- 检测到 React + TypeScript
-- 检测到前端项目结构
-
-AI 自动执行：
-python trae_manager.py install-skills frontend-dev-guidelines,frontend-design,artifacts-builder,webapp-testing
-
-AI 回复：
-✅ 已为 Next.js 项目安装以下技能：
-   - frontend-dev-guidelines (前端开发指南)
-   - frontend-design (前端设计)
-   - artifacts-builder (构建工具)
-   - webapp-testing (Web 应用测试)
-
-# 场景2：开始新项目
-用户："我要开发一个 Python 数据分析工具"
-
-AI 自动执行：
-python trae_manager.py install-skills xlsx,pdf,docx,canvas-design,theme-factory,file-organizer
-
-AI 回复：
-✅ 已为数据分析项目安装以下技能：
-   - xlsx (Excel 处理)
-   - pdf (PDF 处理)  
-   - docx (Word 处理)
-   - canvas-design (可视化设计)
-   - theme-factory (主题工厂)
-   - file-organizer (文件整理)
-
-# 场景3：管理和优化已安装技能
-用户："帮我清理重复的技能"
-
-AI 自动执行：
-# 1. 扫描并识别重复技能
-python trae_manager.py scan-duplicates
-# 2. 列出重复项
-# 3. 自动保留最新版本，删除旧版本
-
-AI 回复：
-✅ 已清理重复技能：
-   - 删除: docx (旧版本 v1.0)
-   - 保留: docx (新版本 v2.1)
-   - 删除: pdf (旧版本 v1.2)
-   - 保留: pdf (新版本 v1.5)
-   📦 共释放空间: 45MB
-
-用户："优化我的技能组合"
-
-AI 自动执行：
-# 1. 分析已安装技能的使用频率
-# 2. 识别未使用的技能
-# 3. 推荐核心技能组合
-# 4. 清理冗余技能
-
-AI 回复：
-📊 技能使用分析报告：
-   高频使用: frontend-dev-guidelines, systematic-debugging, docx
-   从未使用: competitive-ads-extractor, twitter-algorithm-optimizer
-   
-💡 优化建议：
-   - 保留核心技能: 23个
-   - 建议删除: 5个（可释放 120MB）
-   - 推荐安装: mcp-builder, skill-developer
-   
-是否执行优化？(是/否)
-```
-
-#### 方式3：技能管理和优化命令
+#### 方式3：技能管理和优化
 
 | 管理操作 | 对话命令 | 功能说明 |
 |---------|---------|---------|
-| **清理重复** | "清理重复技能" / "删除重复的技能" | 扫描并删除重复安装的技能，保留最新版本 |
-| **优化组合** | "优化技能组合" / "清理不用的技能" | 分析使用频率，推荐保留核心技能，删除冗余 |
-| **查看已安装** | "查看已安装技能" / "列出我的技能" | 显示所有已安装技能及其版本 |
-| **卸载技能** | "卸载 [技能名]" / "删除 [技能名] 技能" | 卸载指定的技能 |
-| **更新技能** | "更新所有技能" / "升级到最新版本" | 检查并更新所有技能到最新版本 |
-| **备份配置** | "备份我的技能配置" | 导出当前技能配置到文件 |
-| **恢复配置** | "从备份恢复技能" | 从备份文件恢复技能配置 |
+| **清理重复** | `"清理重复技能"` | 扫描并删除重复安装的技能 |
+| **优化组合** | `"优化技能组合"` | 分析使用频率，清理冗余 |
+| **查看已安装** | `"查看已安装技能"` | 显示所有已安装技能及其版本 |
+| **卸载技能** | `"卸载 [技能名]"` | 卸载指定的技能 |
+| **更新技能** | `"更新所有技能"` | 检查并更新到最新版本 |
+| **备份配置** | `"备份我的技能配置"` | 导出当前配置到文件 |
+| **恢复配置** | `"从备份恢复技能"` | 从备份文件恢复配置 |
 
-**技能优化示例：**
+**使用示例：**
 
 ```bash
 # 示例1：清理重复技能
-用户："我安装了多个版本的 pdf 技能，清理一下"
-
-AI 执行：
-python trae_manager.py remove-duplicate-skills --keep-latest
+用户："清理重复技能"
 
 AI 回复：
 🔍 发现重复技能：
    - pdf (v1.0, v1.2, v2.0) -> 保留 v2.0
    - docx (v1.5, v2.1) -> 保留 v2.1
-   
-✅ 已清理完成：
-   - 删除: 3 个旧版本
-   - 释放空间: 78MB
+✅ 已清理完成：删除 3 个旧版本，释放 78MB
 
 # 示例2：根据项目优化
 用户："我只做前端开发，优化技能组合"
-
-AI 分析：
-- 保留: frontend-dev-guidelines, frontend-design, artifacts-builder
-- 删除: backend-dev-guidelines, python-related-skills
-- 推荐: webapp-testing, playwright-cli
-
-AI 执行：
-python trae_manager.py optimize-for-project --type frontend
 
 AI 回复：
 🎯 已为前端开发优化技能组合：
    保留: 12个核心技能
    删除: 8个不相关技能
-   推荐安装: 2个新技能
    预计释放: 156MB
 ```
+
+---
 
 ## 🛠️ 项目结构
 
@@ -391,6 +302,8 @@ trae-skills-hub/
         └── release.yml
 ```
 
+---
+
 ## 🔧 系统要求
 
 ### 最低配置
@@ -403,6 +316,8 @@ trae-skills-hub/
 - **内存**: 8GB RAM
 - **磁盘**: 5GB 可用空间
 
+---
+
 ## 📝 更新日志
 
 ### v1.0.0 (2026-02-02)
@@ -412,8 +327,12 @@ trae-skills-hub/
 - ✅ 实现trae-manager统一管理
 - ✅ 支持导出/导入配置
 - ✅ 支持跨机器部署
+- ✅ 支持智能体对话自动安装
+- ✅ 支持技能管理和优化
 
-## 🤝 贡献
+---
+
+## 🤝 贡献指南
 
 欢迎提交Issue和Pull Request！
 
@@ -424,9 +343,15 @@ trae-skills-hub/
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 打开 Pull Request
 
-## 📄 许可证
+---
 
-本项目基于 [MIT](LICENSE) 许可证开源。
+## 📚 相关文档
+
+- [部署指南](DEPLOY.md) - 详细部署说明
+- [安装指南](trae-manager/INSTALL.md) - 新机器安装指南
+- [使用说明](trae-manager/SKILL.md) - 完整使用文档
+
+---
 
 ## 🙏 致谢
 
@@ -434,10 +359,11 @@ trae-skills-hub/
 - [MCP.so](https://mcp.so/) - MCP服务收录平台
 - [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers)
 
-## 📞 联系我们
+---
 
-- **GitHub Issues**: [提交问题](https://github.com/yourusername/trae-skills-hub/issues)
-- **Email**: your.email@example.com
+## 📄 许可证
+
+本项目基于 [MIT](LICENSE) 许可证开源。
 
 ---
 
