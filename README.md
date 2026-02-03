@@ -87,6 +87,10 @@ python trae-manager/tools/trae_manager.py setup --full --auto-install
 ### 使用
 
 ```bash
+# 从本仓库一键安装所有推荐技能
+python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/2426366814/trae-skills-hub/master/install_all_skills.py').read())"
+
+# 或手动安装
 # 搜索技能
 python trae-manager/tools/skill_search.py --search "文档处理"
 
@@ -141,10 +145,27 @@ python trae_manager.py install-mcp filesystem,fetch
 
 ### 场景4：智能体对话自动安装
 
-根据你的 GitHub 项目类型，AI 智能体会自动分析并安装所需的 skills 和 MCP：
+在 Trae IDE 中与 AI 智能体对话，自动安装 skills 和 MCP：
+
+#### 方式1：从本仓库一键安装全部推荐技能
 
 ```bash
-# 在 Trae IDE 中，直接告诉 AI 你的项目：
+# 告诉 AI 从 trae-skills-hub 仓库安装所有推荐技能：
+"从 https://github.com/2426366814/trae-skills-hub 安装所有推荐技能"
+"安装 trae-skills-hub 中的全部 skills 和 MCP"
+"一键安装这个仓库推荐的所有开发工具"
+
+# AI 智能体将自动：
+# 1. 访问 https://github.com/2426366814/trae-skills-hub
+# 2. 读取推荐的技能清单（文档处理、开发工具、MCP服务等）
+# 3. 自动安装所有推荐的 skills 和 MCP
+# 4. 配置环境变量和依赖
+```
+
+#### 方式2：根据项目类型智能安装
+
+```bash
+# 告诉 AI 你的项目类型：
 
 "我克隆了一个 React 前端项目，帮我安装相关技能"
 "这是一个 Python 数据分析项目，需要哪些技能？"
