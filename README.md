@@ -141,77 +141,115 @@ python trae_manager.py install-mcp filesystem,fetch
 
 ### 场景4：智能体对话自动安装
 
-通过自然语言与 AI 智能体对话，自动安装所有需要的 skills 和 MCP：
+根据你的 GitHub 项目类型，AI 智能体会自动分析并安装所需的 skills 和 MCP：
 
 ```bash
-# 在 Trae IDE 中，直接与 AI 对话安装
-# 示例对话命令：
+# 在 Trae IDE 中，直接告诉 AI 你的项目：
 
-"帮我安装文档处理相关的技能"
-"安装 pdf、docx、xlsx、pptx 技能"
-"安装 MCP 服务：filesystem、fetch、sqlite"
-"安装所有开发工具技能"
-"安装 AI Agent 相关的 skills"
+"我克隆了一个 React 前端项目，帮我安装相关技能"
+"这是一个 Python 数据分析项目，需要哪些技能？"
+"我在开发一个 AI Agent 应用，安装相关工具"
+"这是一个文档处理工具项目"
 
-# AI 智能体将自动执行：
-# 1. 搜索并识别所需技能/MCP
-# 2. 自动安装依赖
-# 3. 配置环境变量
-# 4. 验证安装结果
+# AI 智能体将自动：
+# 1. 分析项目类型（package.json、requirements.txt、代码结构等）
+# 2. 识别项目所需的技术栈
+# 3. 自动安装匹配的 skills 和 MCP
+# 4. 配置环境变量和依赖
 ```
 
-**支持的智能体对话命令：**
+**按项目类型智能安装：**
 
-| 对话指令 | 自动安装内容 |
-|---------|-------------|
-| "安装文档处理技能" | pdf, docx, xlsx, pptx |
-| "安装开发工具" | skill-creator, mcp-builder, frontend-design, backend-dev-guidelines |
-| "安装 AI Agent 技能" | building-agents, building-agents-using-langchain, building-agents-using-crewai |
-| "安装 MCP 服务" | filesystem, fetch, sqlite, postgresql |
-| "安装所有基础技能" | 核心文档处理 + 开发工具 + 常用 MCP |
-| "安装 [技能名]" | 单个指定技能 |
-| **"安装全部 skills 和 MCP"** | **一键安装所有可用技能和 MCP 服务** |
+| 项目类型 | 对话命令 | 自动安装内容 |
+|---------|---------|-------------|
+| **React/前端项目** | "我开发了 React 项目" | frontend-design, frontend-dev-guidelines, artifacts-builder, webapp-testing |
+| **Node.js/后端项目** | "这是 Node.js 后端项目" | backend-dev-guidelines, error-tracking, systematic-debugging, route-tester |
+| **Python/数据分析** | "Python 数据分析项目" | xlsx, pdf, docx, canvas-design, theme-factory |
+| **AI Agent 应用** | "开发 AI Agent 应用" | building-agents, building-agents-using-langchain, mcp-builder, langsmith-fetch |
+| **文档处理工具** | "文档处理工具项目" | docx, pdf, xlsx, pptx, file-organizer, invoice-organizer |
+| **自动化测试** | "需要自动化测试" | playwright-cli, webapp-testing, route-tester, test-driven-development |
+| **MCP 服务开发** | "开发 MCP 服务" | mcp-builder, mcp_with_server, skill-creator |
+| **全栈项目** | "全栈 Web 应用" | frontend-dev-guidelines, backend-dev-guidelines, connect-apps, error-tracking |
 
-**一键安装全部（完整环境）：**
+**基于 GitHub 仓库智能安装：**
 
 ```bash
-# 对话命令：
+# 告诉 AI 你的 GitHub 项目地址：
+"我克隆了 https://github.com/username/project-name，安装相关技能"
+
+# AI 自动分析项目并安装：
+# 1. 读取 package.json / requirements.txt / Cargo.toml 等
+# 2. 分析项目依赖和技术栈
+# 3. 匹配并安装对应的 skills 和 MCP
+
+# 示例：
+# 检测到 React + TypeScript -> 安装 frontend-dev-guidelines, frontend-design
+# 检测到 Python + FastAPI -> 安装 backend-dev-guidelines, error-tracking
+# 检测到 Playwright 测试 -> 安装 webapp-testing, playwright-cli
+```
+
+**一键安装项目所需全部环境：**
+
+```bash
+# 完整项目环境安装命令：
+
+# 前端项目环境
+"为我的前端项目安装全部所需技能"
+python trae_manager.py install-skills frontend-design,frontend-dev-guidelines,artifacts-builder,web-artifacts-builder,canvas-design,theme-factory,webapp-testing,skill-creator
+
+# 后端项目环境  
+"为我的后端项目安装全部所需技能"
+python trae_manager.py install-skills backend-dev-guidelines,error-tracking,systematic-debugging,route-tester,requesting-code-review,finishing-a-development-branch,writing-plans,executing-plans
+
+# AI 项目环境
+"为我的 AI 项目安装全部所需技能"
+python trae_manager.py install-skills building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,mcp-builder,langsmith-fetch,content-research-writer,brainstorming
+
+# 数据/文档处理环境
+"为我的数据处理项目安装全部所需技能"
+python trae_manager.py install-skills docx,pdf,xlsx,pptx,file-organizer,invoice-organizer,canvas-design,theme-factory
+
+# 完整开发环境（全部安装）
 "安装全部 skills 和 MCP"
-"一键安装所有技能和 MCP 服务"
-"完整安装所有可用组件"
-
-# AI 自动执行以下安装：
-
-# 1. 安装所有核心 Skills
-python trae_manager.py install-skills docx,pdf,pptx,xlsx,skill-creator,mcp-builder,frontend-design,backend-dev-guidelines,frontend-dev-guidelines,canvas-design,theme-factory,artifacts-builder,web-artifacts-builder,brainstorming,systematic-debugging,writing-plans,executing-plans,using-superpowers,using-git-worktrees,content-research-writer,doc-coauthoring,skill-share,requesting-code-review,finishing-a-development-branch,subagent-driven-development,test-driven-development
-
-# 2. 安装所有 MCP 服务
-python trae_manager.py install-mcp filesystem,fetch,sqlite,postgresql,git,pdf,playwright-mcp-dev,webapp-testing
-
-# 3. 安装 AI Agent 相关 Skills
-python trae_manager.py install-skills building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,building-agents-using-vercel,test-sdk-in-realworld
-
-# 4. 安装实用工具 Skills
-python trae_manager.py install-skills connect-apps,connect,langsmith-fetch,developer-growth-analysis,meeting-insights-analyzer,lead-research-assistant,tailored-resume-generator,twitter-algorithm-optimizer,competitive-ads-extractor,domain-name-brainstormer,file-organizer,invoice-organizer,internal-comms
-
-# 5. 安装自动化测试相关
-python trae_manager.py install-skills route-tester,skill-developer,error-tracking,playwright-cli,playwright-mcp-dev
+python trae_manager.py install-skills docx,pdf,pptx,xlsx,skill-creator,mcp-builder,frontend-design,backend-dev-guidelines,frontend-dev-guidelines,canvas-design,theme-factory,artifacts-builder,web-artifacts-builder,brainstorming,systematic-debugging,writing-plans,executing-plans,using-superpowers,using-git-worktrees,content-research-writer,doc-coauthoring,skill-share,requesting-code-review,finishing-a-development-branch,subagent-driven-development,test-driven-development,building-agents,building-agents-using-langchain,building-agents-using-crewai,building-agents-using-llamaindex,building-agents-using-vercel,connect-apps,connect,langsmith-fetch,developer-growth-analysis,meeting-insights-analyzer,lead-research-assistant,tailored-resume-generator,twitter-algorithm-optimizer,competitive-ads-extractor,domain-name-brainstormer,file-organizer,invoice-organizer,internal-comms,route-tester,skill-developer,error-tracking,playwright-cli,playwright-mcp-dev,webapp-testing
+python trae_manager.py install-mcp filesystem,fetch,sqlite,postgresql,git,pdf
 ```
 
-**安装示例：**
+**实际使用示例：**
 
 ```bash
-# 用户输入（在 AI 对话框中）：
-"我需要处理 PDF 文档和 Excel 表格，帮我安装相关技能"
+# 场景1：刚克隆了一个项目
+用户："我刚克隆了 https://github.com/vercel/next.js，需要安装什么技能？"
 
-# AI 自动执行：
-python trae_manager.py install-skills pdf,xlsx
+AI 分析：
+- 检测到 Next.js 框架
+- 检测到 React + TypeScript
+- 检测到前端项目结构
 
-# 并提示用户：
-# ✅ 已安装 pdf 技能 - PDF文档处理
-# ✅ 已安装 xlsx 技能 - Excel表格处理
-# 📋 依赖检查：pytesseract, pdf2image, openpyxl, pandas
-# 🔧 环境配置：已自动配置
+AI 自动执行：
+python trae_manager.py install-skills frontend-dev-guidelines,frontend-design,artifacts-builder,webapp-testing
+
+AI 回复：
+✅ 已为 Next.js 项目安装以下技能：
+   - frontend-dev-guidelines (前端开发指南)
+   - frontend-design (前端设计)
+   - artifacts-builder (构建工具)
+   - webapp-testing (Web 应用测试)
+
+# 场景2：开始新项目
+用户："我要开发一个 Python 数据分析工具"
+
+AI 自动执行：
+python trae_manager.py install-skills xlsx,pdf,docx,canvas-design,theme-factory,file-organizer
+
+AI 回复：
+✅ 已为数据分析项目安装以下技能：
+   - xlsx (Excel 处理)
+   - pdf (PDF 处理)  
+   - docx (Word 处理)
+   - canvas-design (可视化设计)
+   - theme-factory (主题工厂)
+   - file-organizer (文件整理)
 ```
 
 ## 🛠️ 项目结构
